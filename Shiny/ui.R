@@ -13,7 +13,8 @@ dashboardPage(
       menuItem('Analysis', tabName = 'analysis', icon = icon('book')),
       menuItem('Selector', tabName = 'graphing', icon = icon('chart-bar')),
       menuItem('Public School Data',tabName = 'data',icon = icon('database')),
-      menuItem('Charter School Data',tabName = 'data_charter',icon = icon('coins'))
+      menuItem('Charter School Data',tabName = 'data_charter',icon = icon('coins')),
+      menuItem('About Me', tabName = 'me', icon = icon('address-card'))
     )
   ),
   dashboardBody(
@@ -64,6 +65,9 @@ dashboardPage(
                       ),
                       fluidRow(
                         box(plotlyOutput('plot8'), width = 12)
+                      ),
+                      fluidRow(
+                        box(plotlyOutput('plot9'), width = 12)
                       )
                     )
                   )
@@ -96,6 +100,14 @@ dashboardPage(
               fluidRow(
                 box(dataTableOutput('table2'),width=12)
               )
+      ),
+      tabItem(tabName = 'me',
+              fluidRow(column(12, ( a("GitHub",  target="_blank", href =  "https://github.com/dbrancusi")))),
+              fluidRow(column(12, ( a("LinkedIn",  target="_blank", href =  "https://www.linkedin.com/in/daniel-brancusi-0560a75/"))))#,
+              # fluidRow(
+              #   box(plotOutput('image'), width = 12)
+              # )
+
       )
     )
       

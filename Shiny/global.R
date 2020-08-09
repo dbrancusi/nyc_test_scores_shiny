@@ -77,12 +77,48 @@ char_borough <- charter %>%
   dplyr::arrange(desc(count))
 char_borough
 
+xform3 <- list(title = '',
+               categoryorder = "array",
+               categoryarray = c("Brooklyn", 
+                                 "The Bronx",
+                                 'Manhattan',
+                                 'Queens',
+                                 "Staten Island")
+)
+
 #score comparison
 comp <- read_csv('pub_priv.csv') %>% 
   select(c(1,2,3,4))
 head(comp)
 
 colnames(comp) <- c('type', 'Reading', 'Math', 'Writing')
+
+xform2 <- list(title = '',
+               categoryorder = "array",
+               categoryarray = c("Independent", 
+                                 "Religiously  Affiliated", 
+                                 "Public")
+              )
+
+#Income Comparison
+scores_income <- read_csv('scores_by_income.csv')
+scores_income <- scores_income %>% 
+  dplyr::select(c(1,2,3,4)) %>% 
+  dplyr::rename(income = X1)
+
+xform <- list(title ='',
+              categoryorder = "array",
+              categoryarray = c("Under $20,000", 
+                                "$20,000 to $40,000", 
+                                "$40,000 to $60,000",
+                                '$60,000 to $80,000',
+                                '$80,000 to $100,000',
+                                '$100,000 to $120,000',
+                                '$120,000 to $140,000',
+                                '$140,000 to $160,000',
+                                '$160,000 to $200,000',
+                                '$200,000 and Over'
+              ))
 
 #map label
 
@@ -91,4 +127,5 @@ label <- paste(scores$school_name, 'Address:', scores$address, ', Zip:', scores$
                ', SAT Math:', scores$avg_score_math,
                ', SAT Reading:', scores$avg_score_reading, ', SAT Writing:', 
                scores$avg_score_writing, ', Percent Tested:', scores$percent_tested)
+
 

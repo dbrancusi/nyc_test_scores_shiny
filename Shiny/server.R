@@ -82,9 +82,8 @@ function(input, output){
       geom_point(shape=21, color="black", fill="orange", size=6) +
       geom_line() +
       labs(title='NYC Private School Enrollment', 
-           x='Year', 
+           x='', 
            y='Enrollment') +
-      theme_ipsum() +
       ylim(60000, 80000) +
       scale_colour_brewer(palette='Set1') +
       theme_bw()
@@ -98,7 +97,7 @@ function(input, output){
   
   output$plot7 <- renderPlotly({
     plot_ly(data = char_borough, x = ~Borough, y = ~count, type = 'bar', colors = 'Set1') %>% 
-      layout(title = 'Charter Schools by Borough', xaxis = list(autorange = "reversed", title = ''), 
+      layout(title = 'Charter Schools by Borough', xaxis = xform3, 
              yaxis = list(title = 'Count'))
   })
   
@@ -106,8 +105,16 @@ function(input, output){
     plot_ly(comp, x = ~type, y = ~Reading, name = 'Reading', type = 'bar', colors = 'Set1') %>% 
       add_trace(y = ~Math, name = 'Math') %>% 
       add_trace(y = ~Writing, name = 'Writing') %>% 
-      layout(title = 'SAT Scores By School Type', xaxis = list(autorange = "reversed", title = ''), 
+      layout(title = 'SAT Scores By School Type', xaxis = xform2, 
              yaxis = list(title = 'Test Score'))
+  })
+  
+  output$plot9 <- renderPlotly({
+  plot_ly(scores_income, x = ~income, y = ~`Critical Reading`, name = 'Reading', type = 'bar', colors = 'Set1') %>% 
+    add_trace(y = ~Math, name = 'Math') %>% 
+    add_trace(y = ~Writing, name = 'Writing') %>% 
+    layout(title = 'SAT Scores By Income Level', xaxis = xform, 
+           yaxis = list(title = ''), barmode = 'stack')
   })
   
   output$table=renderDataTable(
@@ -145,3 +152,4 @@ function(input, output){
             round(mean(scores[,input$selected]), 1),
             icon = icon("calculator"), fill = TRUE))
 }
+
