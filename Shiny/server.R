@@ -117,6 +117,12 @@ function(input, output){
            yaxis = list(title = ''), barmode = 'stack')
   })
   
+  output$plot10 = renderPlotly({
+    plot_ly(pcounty, x = ~County, y = ~count, type = 'bar') %>% 
+      layout(title ='Private Schools By County NYC', xaxis = xformP, 
+             yaxis = list(title = 'Number of Schools'))
+  })
+  
   output$table=renderDataTable(
     datatable(full,rownames = T) %>% 
       formatStyle(input$selected,  
@@ -126,6 +132,11 @@ function(input, output){
   output$table2=renderDataTable(
     datatable(charter,rownames = T)
   
+  )
+  
+  output$table3=renderDataTable(
+    datatable(pcount,rownames = T)
+    
   )
   
   output$hist=renderGvis(

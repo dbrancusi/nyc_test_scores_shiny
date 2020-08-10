@@ -14,6 +14,7 @@ dashboardPage(
       menuItem('Selector', tabName = 'graphing', icon = icon('chart-bar')),
       menuItem('Public School Data',tabName = 'data',icon = icon('database')),
       menuItem('Charter School Data',tabName = 'data_charter',icon = icon('coins')),
+      menuItem('Private School Data',tabName = 'data_private',icon = icon('coins')),
       menuItem('About Me', tabName = 'me', icon = icon('address-card'))
     )
   ),
@@ -64,6 +65,9 @@ dashboardPage(
                         box(plotOutput('plot5'), width = 12)
                       ),
                       fluidRow(
+                        box(plotlyOutput('plot10'), width = 12)
+                      ),
+                      fluidRow(
                         box(plotlyOutput('plot8'), width = 12)
                       ),
                       fluidRow(
@@ -99,6 +103,11 @@ dashboardPage(
       tabItem(tabName = 'data_charter',
               fluidRow(
                 box(dataTableOutput('table2'),width=12)
+              )
+      ),
+      tabItem(tabName = 'data_private',
+              fluidRow(
+                box(dataTableOutput('table3'),width=12)
               )
       ),
       tabItem(tabName = 'me',

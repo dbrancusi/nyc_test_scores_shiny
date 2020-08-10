@@ -8,6 +8,7 @@ library(plotly)
 library(leaflet)
 library(tidyverse)
 library(shinythemes)
+library(rsconnect)
 
 # state_stat=state.x77 %>% 
 #   as.data.frame() %>% 
@@ -61,6 +62,23 @@ priv <- as.data.frame(cbind(year, enroll))
 priv = priv %>% 
   mutate(enroll = as.numeric(enroll))
 
+#Private School Count
+pcount <- read_csv('2019-2020.csv')
+
+pcounty <- pcount %>% 
+  dplyr::group_by(County) %>% 
+  na.omit() %>% 
+  dplyr::summarise(count = n()) 
+
+xformP <- list(title = '',
+               categoryorder = "array",
+               categoryarray = c("KINGS", 
+                                 "NEW YORK",
+                                 'QUEENS',
+                                 'WESTCHESTER',
+                                 "BRONX")
+)
+
 #Charter Schools
 charter <- read_csv('operating_charters.csv')
 
@@ -75,7 +93,6 @@ char_borough <- charter %>%
   dplyr::group_by(Borough) %>% 
   summarise(count = n()) %>% 
   dplyr::arrange(desc(count))
-char_borough
 
 xform3 <- list(title = '',
                categoryorder = "array",

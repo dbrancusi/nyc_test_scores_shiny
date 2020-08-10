@@ -1,0 +1,10 @@
+name: shiny
+title:
+username:
+account: brancusi
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2657712
+bundleId: 3498248
+url: https://brancusi.shinyapps.io/shiny/
+when: 1597082801.42297
